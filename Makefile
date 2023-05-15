@@ -49,12 +49,12 @@ run: ## Run the dataproc serverless job
 	gcloud beta dataproc batches submit \
 		--project ${PROJECT_ID} \
 		--region ${REGION} \
-		--version 2.0 \
+		--version 1.1 \
 		pyspark \
 		gs://${CODE_BUCKET}/dist/main.py \
 		--py-files=gs://${CODE_BUCKET}/dist/${APP_NAME}_${VERSION_NO}.zip \
 		--subnet default \
 		--properties spark.executor.instances=2,spark.driver.cores=4,spark.executor.cores=4,spark.app.name=spark_serverless_example \
-		--jars gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.23.2.jar \
+		--jars gs://spark-lib/bigquery/spark-bigquery-with-dependencies_2.12-0.30.0.jar \
 		-- \
 		--project=${PROJECT_ID} --file-uri=gs://${DATA_BUCKET}/stocks.csv --temp-bq-bucket=${TEMP_BUCKET}
