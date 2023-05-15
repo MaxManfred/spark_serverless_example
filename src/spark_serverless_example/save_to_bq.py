@@ -16,6 +16,9 @@ def save_file_to_bq(stocks_df: DataFrame, table: str) -> int:
         .format('bigquery')
         .mode('overwrite')
         .option('table', table)
+        .option('partitionField', 'dt')
+        .option('partitionType', 'DAY')
+        .option('clusteredFields', 'symbol')
         .save()
     )
 
